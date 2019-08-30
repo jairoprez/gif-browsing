@@ -1,14 +1,71 @@
-# Laravel Rest API Skeleton
+# Building a Gif browsing app using Laravel and Vue
 
-A standardized, organized, object-oriented foundation for building high-quality Rest APIs.
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-## Usage
+### Prerequisites
+What things you need to install the software.
 
-1. Clone this repository
-1. CD into the project root
-1. Install Composer Dependencies using the command `composer install`
-1. Copy `.env.example` to `.env` and fill in the details
-1. Generate an app encryption key using the command `php artisan key:generate`
-1. In the `.env` file, add database information to allow Laravel to connect to the database
-1. Migrate the database using the command `php artisan migrate`
-1. Next, you should run the `php artisan passport:install` command to create the encryption keys needed to generate secure access tokens
+* Git.
+* PHP.
+* Composer.
+* Laravel CLI.
+* Laravel Valet (optional).
+* A webserver like Nginx or Apache.
+* A Node Package Manager ( npm or yarn ).
+
+### Install
+Clone the git repository on your computer
+```
+$ git clone https://github.com/jairoprez/gif-browsing.git
+```
+
+You can also download the entire repository as a zip file and unpack in on your computer if you do not have git
+
+After cloning the application, you need to install it's dependencies. 
+```
+$ cd gif-browsing
+$ composer install
+```
+
+### Setup
+- When you are done with installation, copy the `.env.example` file to `.env`
+```
+$ cp .env.example .env
+```
+
+- Generate the application key
+```
+$ php artisan key:generate
+```
+
+- Install Passport
+```
+$ php artisan passport:install
+```
+
+- Add your database credentials to the necessary `env` fields
+
+- Migrate the application
+```
+$ php artisan migrate
+```
+
+- Seed Database
+```
+php artisan db:seed
+```
+
+- Install node modules
+```
+$ npm install
+```
+
+### Run the application
+```
+$ php artisan serve
+```
+
+## Built With
+* [Laravel](https://laravel.com) - The PHP framework for building the API endpoints needed for the application
+* [Vue](https://vuejs.org) - The Progressive JavaScript Framework for building interactive interfaces
