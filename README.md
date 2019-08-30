@@ -61,6 +61,11 @@ php artisan db:seed
 $ npm install
 ```
 
+- Run all Laravel Mix tasks
+```
+$ npm run dev
+```
+
 ### Run the application
 ```
 $ php artisan serve
