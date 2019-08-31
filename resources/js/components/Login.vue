@@ -6,7 +6,7 @@
                     <div class="card-header">GIF Browsing App - Login</div>
 
                     <div class="card-body">
-                        <form method="POST" action="/login">
+                        <form method="POST" action="/login" @submit.prevent="onSubmit">
                             <div class="form-group row">
                                 <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail Address</label>
 
@@ -25,7 +25,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" @click="handleSubmit">
+                                    <button type="submit" class="btn btn-primary">
                                         Login
                                     </button>
                                 </div>
@@ -46,37 +46,33 @@
                 password : ''
             }
         },
-
-        methods : {
-            handleSubmit(e){
-                e.preventDefault();
-
-                if (this.password.length > 0) {
-                    axios.post('/api/v1/auth/login', {
-                        email: this.email,
-                        password: this.password
-                    })
-                    .then(response => {
-                        localStorage.setItem('user', response.data.user.name)
-                        localStorage.setItem('jwt', response.data.access_token)
-
-                        if (localStorage.getItem('jwt') != null){
-                            this.$router.go('/')
-                        }
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        this.email = '';
-                        this.password = '';
-                        alert('Wrong email or password');
-                    });
-                }
+        
+        methods: {
+            onSubmit() {
+               axios.post('/api/v1/auth/login', {
+                    email: this.email,
+                    password: this.password
+                })
+                .then(response => {
+                    localStorage.setItem('user', response.data.user.name)
+                    localStorage.setItem('jwt', response.data.access_token)
+                    
+                    if (localStorage.getItem('jwt') != null){
+                        this.$router.push({ name: 'home' });
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    this.email = '';
+                    this.password = '';
+                    alert('The email address or the password is incorrect.');
+                });   
             }
         },
 
         beforeRouteEnter (to, from, next) { 
             if (localStorage.getItem('jwt')) {
-                return next('/');
+                return next({ name: 'home' });
             }
 
             next();

@@ -19,13 +19,22 @@ let app = new Vue({
         name : null
     },
 
-    mounted(){
-        this.isLoggedIn = localStorage.getItem('jwt')
-        this.name = localStorage.getItem('user')
+    updated(){
+        this.isLoggedIn = localStorage.getItem('jwt');
+        this.name = localStorage.getItem('user');
 
-        let token = localStorage.getItem('jwt')
-        axios.defaults.headers.common['Content-Type'] = 'application/json'
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+        let token = localStorage.getItem('jwt');
+        axios.defaults.headers.common['Content-Type'] = 'application/json';
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    },
+
+    mounted(){
+        this.isLoggedIn = localStorage.getItem('jwt');
+        this.name = localStorage.getItem('user');
+
+        let token = localStorage.getItem('jwt');
+        axios.defaults.headers.common['Content-Type'] = 'application/json';
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
     },
 
     methods: {
@@ -37,7 +46,7 @@ let app = new Vue({
                 this.isLoggedIn = null;
                 this.name = null;
 
-                this.$router.go('/login')
+                this.$router.push({ name: 'login' });
             });  
         }
     }

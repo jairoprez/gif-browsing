@@ -33,7 +33,7 @@
 
         beforeRouteEnter (to, from, next) { 
             if ( ! localStorage.getItem('jwt')) {
-                return next('login')
+                return next({ name: 'login' });
             }
 
             next()
